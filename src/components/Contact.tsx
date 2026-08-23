@@ -112,6 +112,8 @@ export function Contact() {
             <div className="map-embed">
               <iframe
                 title="FREEDOM Barber & Fryzjer — map"
+                width={600}
+                height={240}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 src="https://maps.google.com/maps?q=osiedle%20Stare%20%C5%BBegrze%20142%2C%2061-249%20Pozna%C5%84&t=&z=15&ie=UTF8&iwloc=&output=embed"

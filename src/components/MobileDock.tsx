@@ -18,11 +18,6 @@ export function MobileDock() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    document.body.classList.toggle("has-mobile-dock", visible);
-    return () => document.body.classList.remove("has-mobile-dock");
-  }, [visible]);
-
   return (
     <div
       className={`mobile-dock ${visible ? "is-visible" : ""}`}

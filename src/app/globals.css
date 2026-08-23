@@ -51,19 +51,21 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 1rem);
   background: var(--bg);
-  overflow-x: hidden;
+  height: auto;
+  min-height: 0;
   overscroll-behavior-y: none;
 }
 
 body {
   margin: 0;
+  height: auto;
+  min-height: 0;
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.65;
   color: var(--text);
   background: var(--bg);
-  overflow-x: hidden;
   overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -109,6 +111,10 @@ h2,
 h3,
 p {
   margin: 0;
+}
+
+#main {
+  overflow-x: clip;
 }
 
 .container {
@@ -1053,8 +1059,12 @@ p {
 }
 
 .map-embed {
+  position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
+  isolation: isolate;
+  contain: layout paint;
+  transform: translateZ(0);
   border: 1px solid rgba(255, 255, 255, 0.08);
   min-height: 360px;
   height: 100%;
@@ -1062,9 +1072,12 @@ p {
 }
 
 .map-embed iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  min-height: 360px;
+  min-height: 0;
+  max-width: 100%;
   border: 0;
   filter: grayscale(0.35) contrast(1.05);
 }
@@ -1471,6 +1484,13 @@ p {
   .gallery-item:nth-child(n + 6) {
     grid-column: span 6;
   }
+
+  .map-embed {
+    contain: strict;
+    height: 240px;
+    min-height: 240px;
+    max-height: 240px;
+  }
 }
 
 @media (max-width: 780px) {
@@ -1483,7 +1503,23 @@ p {
     z-index: 120;
   }
 
-  .site-nav {
+  .site-nav--inline {
+    display: none;
+    position: static;
+    inset: auto;
+    width: auto;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    overflow: visible;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: none;
+    background: none;
+  }
+
+  .site-nav--overlay {
+    display: flex;
     position: fixed;
     inset: 0;
     width: auto;
@@ -1493,28 +1529,10 @@ p {
     gap: 1.5rem;
     background: rgba(8, 8, 8, 0.97);
     z-index: 105;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s var(--ease), visibility 0.3s var(--ease);
-  }
-
-  .site-nav.is-open {
-    display: flex;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-  }
-
-  .site-nav:not(.is-open) {
-    display: none;
-    width: 0;
-    height: 0;
-    min-width: 0;
-    min-height: 0;
-    overflow: hidden;
-    visibility: hidden;
-    pointer-events: none;
+    overscroll-behavior: none;
   }
 
   .site-nav a {
@@ -1536,7 +1554,7 @@ p {
   }
 
   .site-footer {
-    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: 4rem;
   }
 
   .footer-top {

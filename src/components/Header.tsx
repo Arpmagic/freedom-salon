@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./Button";
@@ -15,12 +16,17 @@ export function Header() {
   const { closeLegal } = useLegalOverlay();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setMounted(true);
   }, []);
 
   useEffect(() => {
@@ -32,6 +38,35 @@ export function Header() {
     setOpen(false);
     closeLegal();
   };
+
+  const navLinks = (
+    <>
+      <Link href="/#about" onClick={close}>
+        {dict.nav.about}
+      </Link>
+      <Link href="/#services" onClick={close}>
+        {dict.nav.services}
+      </Link>
+      <Link href="/#portfolio" onClick={close}>
+        {dict.nav.portfolio}
+      </Link>
+      <Link href="/#reviews" onClick={close}>
+        {dict.nav.reviews}
+      </Link>
+      <Link href="/#contact" onClick={close}>
+        {dict.nav.contact}
+      </Link>
+      <Button
+        className="site-nav__cta"
+        href={links.booksy}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={close}
+      >
+        {dict.nav.book}
+      </Button>
+    </>
+  );
 
   useEffect(() => {
     if (!open) return;
@@ -67,31 +102,8 @@ export function Header() {
           />
         </Link>
 
-        <nav id="site-nav" className={`site-nav ${open ? "is-open" : ""}`} aria-label={dict.a11y.mainNav}>
-          <Link href="/#about" onClick={close}>
-            {dict.nav.about}
-          </Link>
-          <Link href="/#services" onClick={close}>
-            {dict.nav.services}
-          </Link>
-          <Link href="/#portfolio" onClick={close}>
-            {dict.nav.portfolio}
-          </Link>
-          <Link href="/#reviews" onClick={close}>
-            {dict.nav.reviews}
-          </Link>
-          <Link href="/#contact" onClick={close}>
-            {dict.nav.contact}
-          </Link>
-          <Button
-            className="site-nav__cta"
-            href={links.booksy}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={close}
-          >
-            {dict.nav.book}
-          </Button>
+        <nav id="site-nav" className="site-nav site-nav--inline" aria-label={dict.a11y.mainNav}>
+          {navLinks}
         </nav>
 
         <div className="header-actions">
@@ -121,7 +133,7 @@ export function Header() {
             className="nav-toggle"
             type="button"
             aria-expanded={open}
-            aria-controls="site-nav"
+            aria-controls={open ? "site-nav-overlay" : "site-nav"}
             aria-label={dict.a11y.menu}
             onClick={() => setOpen((v) => !v)}
           >
@@ -131,6 +143,19 @@ export function Header() {
           </button>
         </div>
       </div>
+      {mounted && open
+        ? createPortal(
+            <nav
+              id="site-nav-overlay"
+              className="site-nav site-nav--overlay"
+              aria-label={dict.a11y.mainNav}
+              aria-modal="true"
+            >
+              {navLinks}
+            </nav>,
+            document.body,
+          )
+        : null}
     </header>
   );
 }
