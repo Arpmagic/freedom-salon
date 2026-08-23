@@ -51,7 +51,8 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 1rem);
   background: var(--bg);
-  overflow-x: clip;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -62,6 +63,8 @@ body {
   line-height: 1.65;
   color: var(--text);
   background: var(--bg);
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -310,6 +313,7 @@ p {
   align-items: center;
   gap: 0.75rem;
   z-index: 110;
+  grid-column: 1;
 }
 
 .brand__logo {
@@ -340,6 +344,7 @@ p {
   display: flex;
   align-items: center;
   gap: 0.85rem;
+  grid-column: 3;
 }
 
 .lang-switch {
@@ -1306,16 +1311,18 @@ p {
     background: rgba(18, 18, 18, 0.94);
     border: 1px solid rgba(232, 197, 71, 0.22);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-    transform: translateY(calc(100% + 1.5rem));
+    transform: translateY(0.65rem);
     opacity: 0;
     pointer-events: none;
-    transition: transform 0.35s var(--ease), opacity 0.35s var(--ease);
+    visibility: hidden;
+    transition: transform 0.35s var(--ease), opacity 0.35s var(--ease), visibility 0.35s var(--ease);
   }
 
   .mobile-dock.is-visible {
     transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
+    visibility: visible;
   }
 
   .mobile-dock__book {
@@ -1350,14 +1357,11 @@ p {
     height: 1.15rem;
   }
 
-  body.has-mobile-dock .site-footer {
-    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
-  }
-
   body.nav-open .mobile-dock,
   body.legal-overlay-open .mobile-dock {
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
   }
 }
 
@@ -1481,10 +1485,9 @@ p {
 
   .site-nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100dvh;
+    inset: 0;
+    width: auto;
+    height: auto;
     flex-direction: column;
     justify-content: center;
     gap: 1.5rem;
@@ -1497,15 +1500,21 @@ p {
   }
 
   .site-nav.is-open {
+    display: flex;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
   }
 
   .site-nav:not(.is-open) {
+    display: none;
     width: 0;
     height: 0;
+    min-width: 0;
+    min-height: 0;
     overflow: hidden;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .site-nav a {
@@ -1524,6 +1533,10 @@ p {
 
   .footer-cta {
     display: none;
+  }
+
+  .site-footer {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
   }
 
   .footer-top {
