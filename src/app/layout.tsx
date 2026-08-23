@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -9,10 +9,10 @@ const cormorantGaramond = Cormorant_Garamond({
   display: "swap",
 });
 
-const outfit = Outfit({
-  subsets: ["latin", "latin-ext"],
+const manrope = Manrope({
+  subsets: ["latin", "latin-ext", "cyrillic"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-outfit",
+  variable: "--font-manrope",
   display: "swap",
 });
 
@@ -115,7 +115,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pl" className={`${cormorantGaramond.variable} ${outfit.variable}`}>
+    <html lang="pl" className={`${cormorantGaramond.variable} ${manrope.variable}`}>
       <body>
         <script
           type="application/ld+json"

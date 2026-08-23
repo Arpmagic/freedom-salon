@@ -19,7 +19,7 @@
   --danger-soft: #3a2a1a;
 
   --font-display: var(--font-cormorant-garamond), "Times New Roman", serif;
-  --font-body: var(--font-outfit), system-ui, sans-serif;
+  --font-body: var(--font-manrope), system-ui, sans-serif;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -1019,10 +1019,12 @@ p {
 }
 
 .social-link__icon {
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.2rem;
+  height: 1.2rem;
   flex-shrink: 0;
   border-radius: 4px;
+  object-fit: contain;
+  display: block;
 }
 
 .social-link:hover {
@@ -1129,13 +1131,21 @@ p {
 }
 
 .footer-legal__links {
-  margin: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.55rem 1.35rem;
+  margin: 1rem 0;
 }
 
 .footer-legal__links a {
   color: inherit;
   text-decoration: underline;
-  text-underline-offset: 0.18em;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+  line-height: 1.4;
+  text-wrap: balance;
 }
 
 .footer-legal__links a:hover {
@@ -1469,6 +1479,25 @@ p {
 
   .header-cta {
     display: none;
+  }
+
+  .footer-cta {
+    display: none;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-nav {
+    justify-content: center;
+  }
+
+  .footer-legal__links {
+    flex-direction: column;
+    gap: 0.7rem;
   }
 
   .hero__img {

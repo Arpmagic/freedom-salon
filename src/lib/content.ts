@@ -27,6 +27,7 @@ export const i18n = {
       serviceCategories: "Kategorie usług",
       call: "Zadzwoń",
       quickActions: "Szybkie akcje",
+      legalNav: "Informacje prawne",
     },
     hero: {
       brand: "FREEDOM",
@@ -146,6 +147,7 @@ export const i18n = {
       serviceCategories: "Категорії послуг",
       call: "Зателефонувати",
       quickActions: "Швидкі дії",
+      legalNav: "Правова інформація",
     },
     hero: {
       brand: "FREEDOM",
@@ -232,7 +234,7 @@ export const i18n = {
     },
     legal: {
       backHome: "Повернутися на головну",
-      privacyLink: "Політика конфіденційності та cookies",
+      privacyLink: "Політика конфіденційності",
       regulationsLink: "Правила салону",
       officialNote: "Офіційна версія документа — польською мовою.",
       notFoundTitle: "Сторінку не знайдено",
@@ -265,6 +267,7 @@ export const i18n = {
       serviceCategories: "Service categories",
       call: "Call",
       quickActions: "Quick actions",
+      legalNav: "Legal information",
     },
     hero: {
       brand: "FREEDOM",

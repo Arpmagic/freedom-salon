@@ -22,7 +22,13 @@ export function Footer() {
             <Link href="/#services">{dict.nav.services}</Link>
             <Link href="/#contact">{dict.nav.contact}</Link>
           </nav>
-          <Button href={links.booksy} target="_blank" rel="noopener noreferrer" size="sm">
+          <Button
+            className="footer-cta"
+            href={links.booksy}
+            target="_blank"
+            rel="noopener noreferrer"
+            size="sm"
+          >
             {dict.footer.book}
           </Button>
         </div>
@@ -35,11 +41,10 @@ export function Footer() {
             <br />
             NIP: 7831906014 | REGON: 528880417
           </p>
-          <div className="footer-legal__links">
+          <nav className="footer-legal__links" aria-label={dict.a11y.legalNav}>
             <Link href="/polityka-prywatnosci">{dict.legal.privacyLink}</Link>
-            <span aria-hidden="true"> | </span>
             <Link href="/regulamin">{dict.legal.regulationsLink}</Link>
-          </div>
+          </nav>
           <p>
             © <span className="num">{year}</span> FREEDOM Barber & Fryzjer. {dict.footer.rights}
           </p>

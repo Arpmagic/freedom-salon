@@ -40,13 +40,15 @@ export function IconFacebook({ className }: IconProps) {
 
 export function IconBooksy({ className }: IconProps) {
   return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
-      <rect width="24" height="24" rx="6" fill="#FF3B77" />
-      <path
-        fill="#fff"
-        d="M8.2 6.4h4.15c2.62 0 4.28 1.38 4.28 3.42 0 1.28-.72 2.28-1.92 2.78 1.42.46 2.28 1.62 2.28 3.12 0 2.2-1.78 3.88-4.55 3.88H8.2V6.4zm2.18 1.78v3.28h1.72c1.28 0 2.08-.66 2.08-1.68 0-1-.78-1.6-2.02-1.6H10.38zm0 5.02v3.62h2.05c1.38 0 2.28-.72 2.28-1.84 0-1.12-.9-1.78-2.32-1.78H10.38z"
-      />
-    </svg>
+    // Official Booksy app icon (teal rounded square, stylized "b").
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      className={className}
+      src="/assets/social/booksy-icon.png"
+      alt=""
+      width={24}
+      height={24}
+    />
   );
 }
 
