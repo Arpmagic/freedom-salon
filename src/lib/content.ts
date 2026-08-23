@@ -109,6 +109,9 @@ export const i18n = {
       rights: "Wszelkie prawa zastrzeżone.",
       book: "Umów wizytę",
     },
+    legal: {
+      backHome: "Wróć na stronę główną",
+    },
   },
 
   uk: {
@@ -217,6 +220,9 @@ export const i18n = {
       rights: "Усі права захищено.",
       book: "Записатися",
     },
+    legal: {
+      backHome: "Повернутися на головну",
+    },
   },
 
   en: {
@@ -324,6 +330,9 @@ export const i18n = {
     footer: {
       rights: "All rights reserved.",
       book: "Book now",
+    },
+    legal: {
+      backHome: "Back to home page",
     },
   },
 } as const;
