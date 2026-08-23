@@ -1,39 +1,44 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useEffect } from "react";
-import Link from "next/link";
+import { useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "./Button";
 import { useLang } from "@/lib/language";
+import { closeLegalPage } from "@/lib/legalReturn";
 
 export function LegalNav({ children }: { children: ReactNode }) {
   const { dict } = useLang();
   const router = useRouter();
 
+  const closeLegal = useCallback(() => {
+    closeLegalPage(router);
+  }, [router]);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
       if (document.body.classList.contains("nav-open")) return;
-      router.push("/");
+      e.preventDefault();
+      closeLegal();
     };
     window.addEventListener("keydown", onKey, true);
     return () => window.removeEventListener("keydown", onKey, true);
-  }, [router]);
+  }, [closeLegal]);
 
   return (
     <>
       <div className="legal-toolbar">
-        <Link className="legal-close" href="/" aria-label={dict.a11y.close}>
+        <button type="button" className="legal-close" onClick={closeLegal} aria-label={dict.a11y.close}>
           <span className="legal-close__icon" aria-hidden="true">
             ×
           </span>
           {dict.a11y.close}
-        </Link>
+        </button>
       </div>
       {children}
       <div className="legal-doc__end">
-        <Button href="/" variant="gold">
+        <Button variant="gold" onClick={closeLegal}>
           {dict.legal.backHome}
         </Button>
       </div>

@@ -68,9 +68,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, [lang]);
 
   const setLang = useCallback((next: Lang) => {
+    document.documentElement.classList.add("is-lang-switching");
     setLangState(next);
     localStorage.setItem(LANG_KEY, next);
     applyDocumentMeta(next);
+    window.setTimeout(() => {
+      document.documentElement.classList.remove("is-lang-switching");
+    }, 150);
   }, []);
 
   const value = useMemo(

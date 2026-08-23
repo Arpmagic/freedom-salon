@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "./Button";
 import { useLang } from "@/lib/language";
 import { links } from "@/lib/content";
+import { rememberHomeScroll } from "@/lib/legalReturn";
 
 export function Footer() {
   const { dict } = useLang();
@@ -42,8 +43,12 @@ export function Footer() {
             NIP: 7831906014 | REGON: 528880417
           </p>
           <nav className="footer-legal__links" aria-label={dict.a11y.legalNav}>
-            <Link href="/polityka-prywatnosci">{dict.legal.privacyLink}</Link>
-            <Link href="/regulamin">{dict.legal.regulationsLink}</Link>
+            <Link href="/polityka-prywatnosci" onClick={rememberHomeScroll}>
+              {dict.legal.privacyLink}
+            </Link>
+            <Link href="/regulamin" onClick={rememberHomeScroll}>
+              {dict.legal.regulationsLink}
+            </Link>
           </nav>
           <p>
             © <span className="num">{year}</span> FREEDOM Barber & Fryzjer. {dict.footer.rights}
