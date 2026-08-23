@@ -242,6 +242,7 @@ p {
 .brand:focus-visible,
 .footer-brand:focus-visible,
 .footer-nav a:focus-visible,
+.footer-legal__links a:focus-visible,
 .skip-link:focus-visible {
   outline: 2px solid var(--gold-bright);
   outline-offset: 3px;
@@ -1082,6 +1083,84 @@ p {
 .footer-copy {
   color: var(--text-faint);
   font-size: 0.82rem;
+}
+
+.footer-legal {
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+  font-size: 0.9em;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.footer-legal p {
+  margin: 0;
+}
+
+.footer-legal strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.footer-legal__links {
+  margin: 10px 0;
+}
+
+.footer-legal__links a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.footer-legal__links a:hover {
+  color: var(--gold-bright);
+}
+
+.legal-page {
+  padding: calc(var(--header-h) + 3rem) 0 4.5rem;
+}
+
+.legal-doc {
+  max-width: 42rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+.legal-doc h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 4vw, 2.6rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text);
+  margin: 0 0 1.75rem;
+}
+
+.legal-doc h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--text);
+  margin: 2rem 0 0.75rem;
+}
+
+.legal-doc p,
+.legal-doc ul {
+  margin: 0 0 1rem;
+}
+
+.legal-doc ul {
+  padding-left: 1.25rem;
+}
+
+.legal-doc li {
+  margin-bottom: 0.5rem;
+}
+
+.legal-doc a {
+  color: var(--gold-bright);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 /* —— Lightbox —— */

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "./Button";
 import { useLang } from "@/lib/language";
 import { links, type Lang } from "@/lib/content";
@@ -49,7 +50,7 @@ export function Header() {
         {dict.a11y.skip}
       </a>
       <div className="header-inner">
-        <a className="brand" href="#main" aria-label="FREEDOM" onClick={close}>
+        <Link className="brand" href="/" aria-label="FREEDOM" onClick={close}>
           <Image
             className="brand__logo"
             src="/assets/logo/logo.jpg"
@@ -58,24 +59,24 @@ export function Header() {
             height={93}
             priority
           />
-        </a>
+        </Link>
 
         <nav id="site-nav" className={`site-nav ${open ? "is-open" : ""}`} aria-label={dict.a11y.mainNav}>
-          <a href="#about" onClick={close}>
+          <Link href="/#about" onClick={close}>
             {dict.nav.about}
-          </a>
-          <a href="#services" onClick={close}>
+          </Link>
+          <Link href="/#services" onClick={close}>
             {dict.nav.services}
-          </a>
-          <a href="#portfolio" onClick={close}>
+          </Link>
+          <Link href="/#portfolio" onClick={close}>
             {dict.nav.portfolio}
-          </a>
-          <a href="#reviews" onClick={close}>
+          </Link>
+          <Link href="/#reviews" onClick={close}>
             {dict.nav.reviews}
-          </a>
-          <a href="#contact" onClick={close}>
+          </Link>
+          <Link href="/#contact" onClick={close}>
             {dict.nav.contact}
-          </a>
+          </Link>
           <Button
             className="site-nav__cta"
             href={links.booksy}
