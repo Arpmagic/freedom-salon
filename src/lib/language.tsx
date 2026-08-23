@@ -74,7 +74,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     applyDocumentMeta(next);
     window.setTimeout(() => {
       document.documentElement.classList.remove("is-lang-switching");
-    }, 150);
+    }, 450);
   }, []);
 
   const value = useMemo(

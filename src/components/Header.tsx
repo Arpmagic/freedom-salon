@@ -6,11 +6,13 @@ import Link from "next/link";
 import { Button } from "./Button";
 import { useLang } from "@/lib/language";
 import { links, type Lang } from "@/lib/content";
+import { useLegalOverlay } from "@/lib/legalOverlay";
 
 const langs: Lang[] = ["pl", "uk", "en"];
 
 export function Header() {
   const { lang, dict, setLang } = useLang();
+  const { closeLegal } = useLegalOverlay();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -26,7 +28,10 @@ export function Header() {
     return () => document.body.classList.remove("nav-open");
   }, [open]);
 
-  const close = () => setOpen(false);
+  const close = () => {
+    setOpen(false);
+    closeLegal();
+  };
 
   useEffect(() => {
     if (!open) return;

@@ -1,15 +1,26 @@
 "use client";
 
+import type { MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./Button";
 import { useLang } from "@/lib/language";
 import { links } from "@/lib/content";
-import { rememberHomeScroll } from "@/lib/legalReturn";
+import { useLegalOverlay } from "@/lib/legalOverlay";
+import type { LegalKind } from "@/lib/legal";
 
 export function Footer() {
   const { dict } = useLang();
+  const { openLegal } = useLegalOverlay();
   const year = new Date().getFullYear();
+
+  const openLegalFromFooter = (event: MouseEvent<HTMLAnchorElement>, kind: LegalKind) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
+      return;
+    }
+    event.preventDefault();
+    openLegal(kind);
+  };
 
   return (
     <footer className="site-footer">
@@ -43,10 +54,13 @@ export function Footer() {
             NIP: 7831906014 | REGON: 528880417
           </p>
           <nav className="footer-legal__links" aria-label={dict.a11y.legalNav}>
-            <Link href="/polityka-prywatnosci" onClick={rememberHomeScroll}>
+            <Link
+              href="/polityka-prywatnosci"
+              onClick={(event) => openLegalFromFooter(event, "privacy")}
+            >
               {dict.legal.privacyLink}
             </Link>
-            <Link href="/regulamin" onClick={rememberHomeScroll}>
+            <Link href="/regulamin" onClick={(event) => openLegalFromFooter(event, "regulations")}>
               {dict.legal.regulationsLink}
             </Link>
           </nav>
