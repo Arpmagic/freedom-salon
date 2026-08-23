@@ -46,6 +46,7 @@ export function Header() {
 
   return (
     <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+      <div className="site-header__bg" aria-hidden="true" />
       <a className="skip-link" href="#main">
         {dict.a11y.skip}
       </a>

@@ -244,6 +244,8 @@ p {
 .footer-nav a:focus-visible,
 .footer-legal__links a:focus-visible,
 .legal-close:focus-visible,
+.mobile-dock__book:focus-visible,
+.mobile-dock__icon:focus-visible,
 .skip-link:focus-visible {
   outline: 2px solid var(--gold-bright);
   outline-offset: 3px;
@@ -261,18 +263,33 @@ p {
   height: var(--header-h);
   display: flex;
   align-items: center;
-  transition: background 0.35s var(--ease), backdrop-filter 0.35s var(--ease),
-    border-color 0.35s var(--ease);
+  overflow: visible;
   border-bottom: 1px solid transparent;
 }
 
+.site-header__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+
 .site-header.is-scrolled {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.site-header.is-scrolled .site-header__bg {
   background: rgba(10, 10, 10, 0.82);
   backdrop-filter: blur(16px);
   border-bottom-color: rgba(255, 255, 255, 0.06);
 }
 
 .header-inner {
+  position: relative;
+  z-index: 1;
   width: min(100% - 2.5rem, var(--container));
   margin-inline: auto;
   display: flex;
@@ -348,7 +365,7 @@ p {
   width: 2.5rem;
   height: 2.5rem;
   position: relative;
-  z-index: 110;
+  z-index: 120;
 }
 
 .nav-toggle span {
@@ -1001,6 +1018,13 @@ p {
     background 0.25s var(--ease);
 }
 
+.social-link__icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+
 .social-link:hover {
   color: var(--gold-bright);
   border-color: rgba(232, 197, 71, 0.4);
@@ -1178,6 +1202,14 @@ p {
   margin: 0 0 1.75rem;
 }
 
+.legal-doc__note {
+  margin: 0 0 1.25rem;
+  padding: 0.75rem 0.9rem;
+  border-left: 2px solid var(--gold-dim);
+  color: var(--text-faint);
+  font-size: 0.88rem;
+}
+
 .legal-doc__end {
   margin-top: 2.5rem;
   padding-top: 1.75rem;
@@ -1209,6 +1241,80 @@ p {
   color: var(--gold-bright);
   text-decoration: underline;
   text-underline-offset: 0.18em;
+}
+
+/* —— Mobile dock —— */
+.mobile-dock {
+  display: none;
+}
+
+@media (max-width: 780px) {
+  .mobile-dock {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    position: fixed;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: calc(0.7rem + env(safe-area-inset-bottom, 0px));
+    z-index: 90;
+    padding: 0.45rem 0.45rem 0.45rem 0.45rem;
+    border-radius: 999px;
+    background: rgba(18, 18, 18, 0.94);
+    border: 1px solid rgba(232, 197, 71, 0.22);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    transform: translateY(calc(100% + 1.5rem));
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s var(--ease), opacity 0.35s var(--ease);
+  }
+
+  .mobile-dock.is-visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-dock__book {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.85rem;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+    color: #14110a;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .mobile-dock__icon {
+    flex-shrink: 0;
+    width: 2.85rem;
+    height: 2.85rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .mobile-dock__icon svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  body.has-mobile-dock {
+    padding-bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  body.nav-open .mobile-dock {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 /* —— Lightbox —— */
@@ -1323,22 +1429,32 @@ p {
     display: block;
   }
 
+  .header-actions {
+    position: relative;
+    z-index: 120;
+  }
+
   .site-nav {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
     flex-direction: column;
     justify-content: center;
     gap: 1.5rem;
     background: rgba(8, 8, 8, 0.97);
-    backdrop-filter: blur(16px);
+    z-index: 105;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.3s var(--ease), visibility 0.3s var(--ease);
   }
 
   .site-nav.is-open {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   .site-nav a {

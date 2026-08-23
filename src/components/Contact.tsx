@@ -2,6 +2,7 @@
 
 import { Button } from "./Button";
 import { Reveal } from "./Reveal";
+import { IconBooksy, IconFacebook, IconInstagram } from "./icons";
 import { useLang } from "@/lib/language";
 import { hours, links } from "@/lib/content";
 
@@ -81,6 +82,7 @@ export function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
+                    <IconInstagram className="social-link__icon" />
                     Instagram
                   </a>
                   <a
@@ -89,6 +91,7 @@ export function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
+                    <IconFacebook className="social-link__icon" />
                     Facebook
                   </a>
                   <a
@@ -97,6 +100,7 @@ export function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
+                    <IconBooksy className="social-link__icon" />
                     Booksy
                   </a>
                 </div>

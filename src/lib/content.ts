@@ -25,6 +25,8 @@ export const i18n = {
       close: "Zamknij",
       openGallery: "Podgląd zdjęcia w powiększeniu",
       serviceCategories: "Kategorie usług",
+      call: "Zadzwoń",
+      quickActions: "Szybkie akcje",
     },
     hero: {
       brand: "FREEDOM",
@@ -92,7 +94,7 @@ export const i18n = {
       phoneLabel: "Telefon",
       emailLabel: "E-mail",
       hoursLabel: "Godziny otwarcia",
-      socialLabel: "Social media",
+      socialLabel: "Media społecznościowe",
       mapLabel: "Zobacz na mapie",
       days: {
         mon: "Poniedziałek",
@@ -111,6 +113,12 @@ export const i18n = {
     },
     legal: {
       backHome: "Wróć na stronę główną",
+      privacyLink: "Polityka prywatności i cookies",
+      regulationsLink: "Regulamin salonu",
+      officialNote: "",
+      notFoundTitle: "Nie znaleziono strony",
+      notFoundBody:
+        "Strona, której szukasz, nie istnieje lub została przeniesiona. Wróć na stronę główną, aby zobaczyć naszą ofertę i umówić wizytę.",
     },
   },
 
@@ -136,6 +144,8 @@ export const i18n = {
       close: "Закрити",
       openGallery: "Перегляд фото у збільшеному вигляді",
       serviceCategories: "Категорії послуг",
+      call: "Зателефонувати",
+      quickActions: "Швидкі дії",
     },
     hero: {
       brand: "FREEDOM",
@@ -222,6 +232,12 @@ export const i18n = {
     },
     legal: {
       backHome: "Повернутися на головну",
+      privacyLink: "Політика конфіденційності та cookies",
+      regulationsLink: "Правила салону",
+      officialNote: "Офіційна версія документа — польською мовою.",
+      notFoundTitle: "Сторінку не знайдено",
+      notFoundBody:
+        "Сторінки, яку ви шукаєте, не існує або її перенесено. Поверніться на головну, щоб переглянути послуги та записатися.",
     },
   },
 
@@ -247,6 +263,8 @@ export const i18n = {
       close: "Close",
       openGallery: "Enlarged photo preview",
       serviceCategories: "Service categories",
+      call: "Call",
+      quickActions: "Quick actions",
     },
     hero: {
       brand: "FREEDOM",
@@ -333,6 +351,12 @@ export const i18n = {
     },
     legal: {
       backHome: "Back to home page",
+      privacyLink: "Privacy and cookie policy",
+      regulationsLink: "Salon terms",
+      officialNote: "The legally binding version of this document is the Polish text.",
+      notFoundTitle: "Page not found",
+      notFoundBody:
+        "The page you are looking for does not exist or has been moved. Return to the home page to see our services and book a visit.",
     },
   },
 } as const;

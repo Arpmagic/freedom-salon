@@ -34,9 +34,24 @@ function detectLang(): Lang {
 
 function applyDocumentMeta(lang: Lang) {
   document.documentElement.lang = lang === "uk" ? "uk" : lang;
-  document.title = i18n[lang].meta.title;
+  const dict = i18n[lang];
+  const path = window.location.pathname.replace(/\/$/, "") || "/";
+  const suffix = "FREEDOM Barber & Fryzjer";
+  if (path === "/polityka-prywatnosci") {
+    document.title = `${dict.legal.privacyLink} | ${suffix}`;
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute("content", dict.meta.description);
+    return;
+  }
+  if (path === "/regulamin") {
+    document.title = `${dict.legal.regulationsLink} | ${suffix}`;
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute("content", dict.meta.description);
+    return;
+  }
+  document.title = dict.meta.title;
   const description = document.querySelector('meta[name="description"]');
-  if (description) description.setAttribute("content", i18n[lang].meta.description);
+  if (description) description.setAttribute("content", dict.meta.description);
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {

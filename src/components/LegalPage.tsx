@@ -1,22 +1,13 @@
-import type { ReactNode } from "react";
-import { LegalNav } from "./LegalNav";
+import { LegalDoc } from "./LegalDoc";
 import { PageShell } from "./PageShell";
+import type { LegalKind } from "@/lib/legal";
 
-export function LegalPage({
-  title,
-  children,
-}: {
-  title: string;
-  children: ReactNode;
-}) {
+export function LegalPage({ kind }: { kind: LegalKind }) {
   return (
     <PageShell>
       <main id="main" className="legal-page">
         <article className="container legal-doc">
-          <LegalNav>
-            <h1>{title}</h1>
-            {children}
-          </LegalNav>
+          <LegalDoc kind={kind} />
         </article>
       </main>
     </PageShell>

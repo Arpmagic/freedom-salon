@@ -1,12 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import { PageShell } from "@/components/PageShell";
+import { useLang } from "@/lib/language";
 
-export const metadata = {
-  title: "Strona nie znaleziona",
-};
-
-export default function NotFound() {
+function NotFoundBody() {
+  const { dict } = useLang();
   return (
     <main
+      id="main"
       style={{
         minHeight: "100svh",
         display: "grid",
@@ -18,19 +20,23 @@ export default function NotFound() {
       <div className="container">
         <span className="eyebrow">404</span>
         <h1 className="section-title" style={{ margin: "0 auto 1rem", maxWidth: "20ch" }}>
-          Nie znaleziono strony
+          {dict.legal.notFoundTitle}
         </h1>
-        <p
-          className="section-sub"
-          style={{ margin: "0 auto 2rem" }}
-        >
-          Strona, której szukasz, nie istnieje lub została przeniesiona. Wróć na
-          stronę główną, aby zobaczyć naszą ofertę i umówić wizytę.
+        <p className="section-sub" style={{ margin: "0 auto 2rem" }}>
+          {dict.legal.notFoundBody}
         </p>
         <Link href="/" className="btn btn--gold">
-          <span className="btn__label">Wróć na stronę główną</span>
+          <span className="btn__label">{dict.legal.backHome}</span>
         </Link>
       </div>
     </main>
+  );
+}
+
+export default function NotFound() {
+  return (
+    <PageShell>
+      <NotFoundBody />
+    </PageShell>
   );
 }

@@ -36,9 +36,9 @@ export function Footer() {
             NIP: 7831906014 | REGON: 528880417
           </p>
           <div className="footer-legal__links">
-            <Link href="/polityka-prywatnosci">Polityka Prywatności i Cookies</Link>
+            <Link href="/polityka-prywatnosci">{dict.legal.privacyLink}</Link>
             <span aria-hidden="true"> | </span>
-            <Link href="/regulamin">Regulamin salonu</Link>
+            <Link href="/regulamin">{dict.legal.regulationsLink}</Link>
           </div>
           <p>
             © <span className="num">{year}</span> FREEDOM Barber & Fryzjer. {dict.footer.rights}
